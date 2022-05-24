@@ -56,6 +56,7 @@ function Player(generalOptions) {
     restitution: 0.1,
     angle: 0,
     density: 0.001,
+    slop: 0.1,
     collisionFilter: {
       category: generalCollCategory,
       mask: generalCollCategory | groundCollCategory
@@ -67,6 +68,7 @@ function Player(generalOptions) {
     restitution: 0.1,
     angle: 0,
     density: 0.00002,
+    slop: 0.1,
     collisionFilter: {
       category: generalCollCategory,
       mask: generalCollCategory | groundCollCategory
@@ -80,6 +82,7 @@ function Player(generalOptions) {
     density: 0.001,
     //inertia: 0.0001,
     //inverseInertia: 1/0.0001,
+    slop: 0.1,
     collisionFilter: {
       category: generalCollCategory,
       mask: generalCollCategory | groundCollCategory
@@ -91,6 +94,7 @@ function Player(generalOptions) {
     restitution: 0.1,
     angle: 0,
     density: 0.00005,
+    slop: 0.1,
     collisionFilter: {
       category: generalCollCategory,
       mask: generalCollCategory | groundCollCategory

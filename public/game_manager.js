@@ -88,6 +88,8 @@ function GameManager() {
       friction: 0.01,
       restitution: 0.89,
       density: 0.00005,
+      // Default is 0.05
+      slop: 0.1,
       collisionFilter: {
         category: generalCollCategory,
         mask: generalCollCategory | groundCollCategory
