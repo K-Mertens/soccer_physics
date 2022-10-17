@@ -91,7 +91,7 @@ var socket;
 function preload() {
   background0 = loadImage('assets/0_background.png');
   spriteSoccerBall = loadImage('assets/sprite_soccer_ball.png');
-  spritePlayerMainBody0 = loadImage('assets/sprite_player_main_body0.png');
+  spritePlayerMainBody0 = loadImage('assets/sprite_player_main_body' + Math.floor(Math.random() * 5) + '.png');
   spritePlayerLeg0 = loadImage('assets/sprite_player_leg0.png');
 }
 
