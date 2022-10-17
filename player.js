@@ -43,6 +43,7 @@ function Player(generalOptions) {
   this.cstrCounterweight2;
 
   this.isPlayer1 = generalOptions.isPlayer1;
+  this.playerBody = generalOptions.playerBody;
   this.absoluteAngle = 0;
   this.flipImageX = 0;
 
@@ -490,7 +491,7 @@ function Player(generalOptions) {
     stroke(0);
     fill(255);
     scale(this.flipImageX, 1);
-    image(spritePlayerMainBody0, -this.mainBodyW / 2, -this.mainBodyH / 2,  this.mainBodyW, this.mainBodyH);
+    image(spritePlayerMainBodies[this.playerBody], -this.mainBodyW / 2, -this.mainBodyH / 2,  this.mainBodyW, this.mainBodyH);
     pop();
     
     // DRAWING LEG

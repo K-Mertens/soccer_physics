@@ -75,7 +75,7 @@ let idleLegStiffness = 0.1; // Previously 0.06
 // Sprites handles
 let background0;
 let spriteSoccerBall;
-let spritePlayerMainBody0;
+let spritePlayerMainBodies = [];
 
 // Used for the temporisation of the game AI
 var lowerBoundTimingAI = 15;
@@ -91,7 +91,11 @@ var socket;
 function preload() {
   background0 = loadImage('assets/0_background.png');
   spriteSoccerBall = loadImage('assets/sprite_soccer_ball.png');
-  spritePlayerMainBody0 = loadImage('assets/sprite_player_main_body0.png');
+  spritePlayerMainBodies[0] = loadImage('assets/sprite_player_main_body0.png');
+  spritePlayerMainBodies[1] = loadImage('assets/sprite_player_main_body1.png');
+  spritePlayerMainBodies[2] = loadImage('assets/sprite_player_main_body2.png');
+  spritePlayerMainBodies[3] = loadImage('assets/sprite_player_main_body3.png');
+  spritePlayerMainBodies[4] = loadImage('assets/sprite_player_main_body4.png');
   spritePlayerLeg0 = loadImage('assets/sprite_player_leg0.png');
 }
 

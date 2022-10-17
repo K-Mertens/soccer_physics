@@ -31,6 +31,7 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: true,
+	  playerBody: Math.floor(Math.random() * 5),
     }
 
     this.player1AtkOptions = {
@@ -47,6 +48,7 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: true,
+	  playerBody: Math.floor(Math.random() * 5),
     }
 
     this.player2DefOptions = {
@@ -63,6 +65,7 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: false,
+	  playerBody: Math.floor(Math.random() * 5),
     }
 
     this.player2AtkOptions = {
@@ -79,6 +82,7 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: false,
+	  playerBody: Math.floor(Math.random() * 5),
     }
 
     this.ballOptions = {
