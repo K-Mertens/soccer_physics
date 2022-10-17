@@ -490,7 +490,7 @@ function Player(generalOptions) {
     stroke(0);
     fill(255);
     scale(this.flipImageX, 1);
-    image(spritePlayerMainBodies[Math.floor(Math.random() * 5)], -this.mainBodyW / 2, -this.mainBodyH / 2,  this.mainBodyW, this.mainBodyH);
+    image(spritePlayerMainBodies[this.playerBody], -this.mainBodyW / 2, -this.mainBodyH / 2,  this.mainBodyW, this.mainBodyH);
     pop();
     
     // DRAWING LEG
