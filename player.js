@@ -43,6 +43,7 @@ function Player(generalOptions) {
   this.cstrCounterweight2;
 
   this.isPlayer1 = generalOptions.isPlayer1;
+  this.playerBody = generalOptions.playerBody;
   this.absoluteAngle = 0;
   this.flipImageX = 0;
 
