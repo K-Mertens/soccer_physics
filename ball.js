@@ -27,4 +27,8 @@ function Ball(options) {
     fill(255);
     pop();
   }
+
+  this.isOnGround = function(ground) {
+    return Matter.SAT.collides(this.body, ground.body).collided;
+  }
 }

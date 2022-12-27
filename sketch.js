@@ -35,7 +35,7 @@ let P2_ONLINE_JOIN_MENU = 7;
 
 // Collision categories
 var generalCollCategory = 0x0001, // Used for all parts of player except counterweight, ball and goal
-    generalNoCollCategory = 0x0002, // Used only for the counterweight of players
+    generalNoCollCategory = 0x0002, // Used only for the counterweight of players (and also foot)
     groundCollCategory = 0x0004; // Used for ground
 
 // INITIALIZATION VARIABLES
@@ -43,9 +43,6 @@ var generalCollCategory = 0x0001, // Used for all parts of player except counter
 let menu = MAIN_MENU;
 
 // Elements dimensions
-
-
-
 let groundWidth = CANVAS_WIDTH;
 let groundHeight = 100; // Has to be a big arbitrary number because of the unknown surrounding the inner computing time of the Matter.js engine
 let groundOffset = 6;
@@ -112,7 +109,7 @@ function setup() {
   engine = Engine.create();
 
   // Matter.js renderer creation - COMMENT FROM HERE...
-  /*var render = Render.create({
+  var render = Render.create({
       element: document.body,
       engine: engine,
       options: {
@@ -127,7 +124,7 @@ function setup() {
       }
   });
 
-  Render.run(render);*/
+  Render.run(render);
   // ... TO HERE TO GET RID OF THE RENDERER
 
   // Socket connection
@@ -210,6 +207,7 @@ function draw() {
   if (menu == 1000) {
     main();
   }
+  //console.log(ball.isOnGround(ground));
 }	
 
 // EVENT FUNCTIONS
@@ -217,11 +215,18 @@ function mouseClicked() {
   gameMenus.clickedOn(menu);
 }
 
+// DEBUG
+function doubleClicked() {
+  gameManager.resetBall();
+  Matter.Body.setPosition(ball.body, Matter.Vector.create(mouseX, mouseY));
+}
+
 function keyPressed() {
   if (keyCode == 65) {
     if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
       if (player1Def.isOnGround(ground)) {
         player1Def.jump();
+        liftBall(player1Def);
       }
     }
   }
@@ -230,6 +235,7 @@ function keyPressed() {
     if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
       if (player1Atk.isOnGround(ground)) {
         player1Atk.jump();
+        liftBall(player1Atk);
       }
     } 
   }
@@ -238,6 +244,7 @@ function keyPressed() {
     if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P2_LOCAL_SELECTED) {
       if (player2Def.isOnGround(ground)) {
     	player2Def.jump();
+      liftBall(player2Def);
       }
     }
   }
@@ -246,33 +253,49 @@ function keyPressed() {
     if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P2_LOCAL_SELECTED) {
       if (player2Atk.isOnGround(ground)) {
         player2Atk.jump();
+        liftBall(player2Atk);
       }
+    }
+  }
+
+  // TEST apply force on ball
+  if (keyCode == 69){
+    if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
+      Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.005));
+      console.log("coucou");
+      Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,0));
     }
   }
 }
 
 function keyReleased() {
-  if (keyCode == 65) {
-	  if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
-		  player1Def.cstrLegs.stiffness = idleLegStiffness;
-	  }
-  }
-
-  if (keyCode == 68) {
-	  if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
+  if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
+    if (keyCode == 65) {
+      player1Def.cstrLegs.stiffness = idleLegStiffness;
+    }
+    if (keyCode == 68) {
 		  player1Atk.cstrLegs.stiffness = idleLegStiffness;
-	  }
+    }
   }
 
-  if (keyCode == RIGHT_ARROW) {
-	  if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P2_LOCAL_SELECTED) {
-		  player2Def.cstrLegs.stiffness = idleLegStiffness;
-	  }
+  if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P2_LOCAL_SELECTED) {
+    if (keyCode == RIGHT_ARROW) {
+      player2Def.cstrLegs.stiffness = idleLegStiffness;
+    }
+    if (keyCode == LEFT_ARROW) {
+      player2Atk.cstrLegs.stiffness = idleLegStiffness;
+    }
   }
+}
 
-  if (keyCode == LEFT_ARROW) {
-	  if (menu == P1_LOCAL_RIGHT_SELECTED || menu == P2_LOCAL_SELECTED) {
-		  player2Atk.cstrLegs.stiffness = idleLegStiffness;
-	  }
+// TEST FUNCTION FOR LIFTING BALL WHEN IT IS ON THE GROUND
+function liftBall(player) {
+  if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
+    Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.005));
+  }
+  if (player.isOnGround && ball.isOnGround) {
+    if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
+      Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.007));
+    }
   }
 }

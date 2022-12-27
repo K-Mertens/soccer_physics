@@ -22,8 +22,8 @@ function Player(generalOptions) {
   this.legFixedBodyW = generalOptions.legFixedWidth;
   this.legFixedBodyH = generalOptions.legFixedHeight;
   //this.footBodyW = this.legBodyW;
-  this.footBodyW = 20;
-  this.footBodyH = 4; // TO BE TUNED
+  this.footBodyW = 30;
+  this.footBodyH = 3; // TO BE TUNED
   this.counterweightBodyW = this.legFixedBodyW + this.legBodyW + this.footBodyW;
   this.counterweightBodyH = 4;
   
@@ -98,7 +98,7 @@ function Player(generalOptions) {
     slop: 0.1,
     collisionFilter: {
       category: generalCollCategory,
-      mask: generalCollCategory | groundCollCategory
+      mask: groundCollCategory
     }
   }
 
@@ -109,7 +109,7 @@ function Player(generalOptions) {
     density: 0.02,
     collisionFilter: {
       category: generalNoCollCategory,
-      mask: groundCollCategory
+      mask: generalCollCategory | groundCollCategory
     }
   }
 
@@ -130,7 +130,6 @@ function Player(generalOptions) {
     this.legBody = Bodies.rectangle(this.legBodyX, this.legBodyY, this.legBodyW, this.legBodyH, leg_options);
     World.add(world,this.legBody);
   }
-  
 
   // BODIES CREATION - FIXED LEG BODY
   if (this.isPlayer1) {
@@ -145,7 +144,6 @@ function Player(generalOptions) {
     this.legFixedBody = Bodies.rectangle(this.leg_fixed_x, this.leg_fixed_y, this.legFixedBodyW, this.legFixedBodyH, leg_fixed_options);
     World.add(world,this.legFixedBody);
   }
-
 
   // BODIES CREATION - FOOT BODY
   if (this.isPlayer1) {
@@ -211,7 +209,6 @@ function Player(generalOptions) {
     this.cstrFixed2_A = Matter.Vector.create((this.mainBodyW / 2) - (this.legFixedBodyW) + 1, (this.mainBodyH / 2) + 1);
     this.cstrFixed2_B = Matter.Vector.create(-(this.legFixedBodyW / 2), -(this.legFixedBodyH / 2));
   }
-  
 
   var cstr_fixed_options = {
     bodyA: this.mainBody,
