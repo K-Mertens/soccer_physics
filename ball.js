@@ -6,19 +6,20 @@
 // Description : Ball class
 // ************************************************
 
-function Ball(options) {
+class Ball {
+  constructor(options) {
+    // ATTRIBUTES
+    this.x = options.startPosX;
+    this.y = options.startPosY;
+    this.r = options.radius;
+    this.body = Bodies.circle(this.x, this.y, this.r, options);
 
-  // ATTRIBUTES
-  this.x = options.startPosX;
-  this.y = options.startPosY;
-  this.r = options.radius;
-  this.body = Bodies.circle(this.x, this.y, this.r, options);
-
-  // Adding the body to the world
-  World.add(world, this.body);
+    // Adding the body to the world
+    World.add(world, this.body);
+  }
 
   // DRAWING FUNCTION
-  this.show = function() {
+  show() {
     push();
     translate(this.body.position.x, this.body.position.y);
     rotate(this.body.angle);
@@ -26,9 +27,9 @@ function Ball(options) {
     stroke(0, 0, 0);
     fill(255);
     pop();
-  }
+  };
 
-  this.isOnGround = function(ground) {
+  isOnGround(ground) {
     return Matter.SAT.collides(this.body, ground.body).collided;
-  }
+  };
 }

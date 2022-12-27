@@ -6,12 +6,14 @@
 // Description : Contains the AI algorithm(s) for the bot player in single player mode
 // ************************************************
 
-function SinglePlayerAI(previousTimingAI, randTimingAI, choosePlayerAI) {
-  this.previousTimingAI = previousTimingAI;
-  this.randTimingAI = randTimingAI;
-  this.choosePlayerAI = choosePlayerAI;
+class SinglePlayerAI {
+  constructor(previousTimingAI, randTimingAI, choosePlayerAI) {
+    this.previousTimingAI = previousTimingAI;
+    this.randTimingAI = randTimingAI;
+    this.choosePlayerAI = choosePlayerAI;
+  }
 
-  this.tickAI = function (playerDef, playerAtk) {
+  tickAI(playerDef, playerAtk) {
     if (frameCount - this.previousTimingAI >= this.randTimingAI) {
       if (this.choosePlayerAI <= 0.1) {
         if (playerDef.isOnGround(ground)) {

@@ -6,47 +6,48 @@
 // Description : Goal class used to define the player one and two goals
 // ************************************************
 
-function Goal(options) {
+class Goal {
+  constructor(options) {
+    // ATTRIBUTES
+    this.areaWidth = options.areaWidth; // This is the width of the goal (from the edge of canvas to the entrance of the goal)
+    this.areaHeight = options.areaHeight;
+    this.topBarX = options.topBarX;
+    this.topBarY = options.topBarY;
+    this.topBarW = options.topBarWidth;
+    this.topBarH = options.topBarHeight;
+    this.botBarX = options.bottomBarX;
+    this.botBarY = options.bottomBarY;
+    this.botBarW = options.bottomBarWidth;
+    this.botBarH = options.bottomBarHeight;
+    this.isGoal1 = options.isGoal1;
 
-  // ATTRIBUTES
-  this.areaWidth = options.areaWidth; // This is the width of the goal (from the edge of canvas to the entrance of the goal)
-  this.areaHeight = options.areaHeight;
-  this.topBarX = options.topBarX;
-  this.topBarY = options.topBarY;
-  this.topBarW = options.topBarWidth;
-  this.topBarH = options.topBarHeight;
-  this.botBarX = options.bottomBarX;
-  this.botBarY = options.bottomBarY;
-  this.botBarW = options.bottomBarWidth;
-  this.botBarH = options.bottomBarHeight;
-  this.isGoal1 = options.isGoal1;
+    // X-location of the bottom bar (depends if it is goal 1 or goal 2)
+    if (this.isGoal1 == true) {
+      this.topBarX = (CANVAS_WIDTH / 9.333) / 2;
+      this.botBarX = 0;
+    }
+    else {
+      this.topBarX = CANVAS_WIDTH - ((CANVAS_WIDTH / 9.333) / 2);
+      this.botBarX = CANVAS_WIDTH;
+    }
 
-  // X-location of the bottom bar (depends if it is goal 1 or goal 2)
-  if (this.isGoal1 == true) {
-    this.topBarX = (CANVAS_WIDTH / 9.333) / 2;
-    this.botBarX = 0;
-  }
-  else {
-    this.topBarX = CANVAS_WIDTH - ((CANVAS_WIDTH / 9.333) / 2);
-    this.botBarX = CANVAS_WIDTH;
-  }
+    this.topBody = Bodies.rectangle(this.topBarX, this.topBarY, this.topBarW, this.topBarH, options);
+    World.add(world, this.topBody);
 
-  this.topBody = Bodies.rectangle(this.topBarX, this.topBarY, this.topBarW, this.topBarH, options);
-  World.add(world,this.topBody);
+    this.botBody = Bodies.rectangle(this.botBarX, this.botBarY, this.botBarW, this.botBarH, options);
+    World.add(world, this.botBody);
 
-  this.botBody = Bodies.rectangle(this.botBarX, this.botBarY, this.botBarW, this.botBarH, options);
-  World.add(world,this.botBody);
-
-  // Slight tilt on top bar of goals
-  if (this.isGoal1 == true) {
-    Body.setAngle(this.topBody, PI/100);
-  }
-  else {
-    Body.setAngle(this.topBody, -PI/100);
+    // Slight tilt on top bar of goals
+    if (this.isGoal1 == true) {
+      Body.setAngle(this.topBody, PI / 100);
+    }
+    else {
+      Body.setAngle(this.topBody, -PI / 100);
+    }
   }
 
   // DRAWING FUNCTION
-  this.show = function() {
+  show() {
     push();
     rectMode(CENTER);
     angleMode(RADIANS);

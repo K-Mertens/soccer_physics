@@ -6,10 +6,12 @@
 // Description : Game menus manager
 // ************************************************
 
-function GameMenus() {
+class GameMenus {
+  constructor() {
 
-  this.draw = function(menu) {
-    
+  }
+
+  draw(menu) {
     // MAIN MENU
     if (menu == MAIN_MENU) {
       image(background0, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -20,7 +22,7 @@ function GameMenus() {
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2), menuButtonWidth, menuButtonHeight);
       fill(0, 100, 255);
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT * 3 / 4), menuButtonWidth, menuButtonHeight);
-      textSize(20)
+      textSize(20);
       fill(255);
       textAlign(CENTER, CENTER);
       text('1 PLAYER - LOCAL', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 4));
@@ -58,7 +60,6 @@ function GameMenus() {
 
     // 2 PLAYERS - LOCAL
     if (menu == P2_LOCAL_SELECTED) {
-
     }
 
     // 2 PLAYERS - ONLINE
@@ -91,7 +92,6 @@ function GameMenus() {
 
     // 1 PLAYER - LOCAL | LEFT
     if (menu == P1_LOCAL_LEFT_SELECTED) {
-
     }
 
     // 1 PLAYER - LOCAL | RIGHT
@@ -151,7 +151,7 @@ function GameMenus() {
     }
   }
 
-  this.clickedOn = function() {
+  clickedOn() {
     if (menu == MAIN_MENU) {
       if (mouseX < (CANVAS_WIDTH / 2) + (menuButtonWidth / 2) && mouseX > (CANVAS_WIDTH / 2) - (menuButtonWidth / 2)) {
         if (mouseY < ((CANVAS_HEIGHT / 4) + menuButtonHeight / 2) && mouseY > ((CANVAS_HEIGHT / 4) - menuButtonHeight / 2)) {

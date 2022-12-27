@@ -6,17 +6,18 @@
 // Description : Manager for the various parameters of the game
 // ************************************************
 
-function GameManager() {
+class GameManager {
+  constructor() {
+    this.player1DefOptions = null;
+    this.player1AtkOptions = null;
+    this.player2DefOptions = null;
+    this.player2AtkOptions = null;
+    this.ballOptions = null;
+    this.goal1Options = null;
+    this.goal2Options = null;
+  }
 
-  this.player1DefOptions = null;
-  this.player1AtkOptions = null;
-  this.player2DefOptions = null;
-  this.player2AtkOptions = null;
-  this.ballOptions = null;
-  this.goal1Options = null;
-  this.goal2Options = null;
-
-  this.init = function() {
+  init() {
     this.player1DefOptions = {
       startPosX: CANVAS_WIDTH * 0.214,
       startPosY: CANVAS_HEIGHT * 5 / 7,
@@ -31,8 +32,8 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: true,
-	  playerBody: Math.floor(Math.random() * 5),
-    }
+      playerBody: Math.floor(Math.random() * 5),
+    };
 
     this.player1AtkOptions = {
       startPosX: CANVAS_WIDTH * 0.429,
@@ -48,8 +49,8 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: true,
-	  playerBody: Math.floor(Math.random() * 5),
-    }
+      playerBody: Math.floor(Math.random() * 5),
+    };
 
     this.player2DefOptions = {
       startPosX: CANVAS_WIDTH * 0.768,
@@ -65,8 +66,8 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: false,
-	  playerBody: Math.floor(Math.random() * 5),
-    }
+      playerBody: Math.floor(Math.random() * 5),
+    };
 
     this.player2AtkOptions = {
       startPosX: CANVAS_WIDTH * 0.571,
@@ -82,8 +83,8 @@ function GameManager() {
       legFixedWidth: CANVAS_WIDTH / 56,
       legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
       isPlayer1: false,
-	  playerBody: Math.floor(Math.random() * 5),
-    }
+      playerBody: Math.floor(Math.random() * 5),
+    };
 
     this.ballOptions = {
       startPosX: CANVAS_WIDTH / 2,
@@ -98,7 +99,7 @@ function GameManager() {
         category: generalCollCategory,
         mask: generalCollCategory | groundCollCategory
       }
-    }
+    };
 
     this.goal1Options = {
       areaWidth: CANVAS_WIDTH / 9.333,
@@ -117,7 +118,7 @@ function GameManager() {
         mask: generalCollCategory
       },
       isStatic: true,
-    }
+    };
 
     this.goal2Options = {
       areaWidth: CANVAS_WIDTH / 9.333,
@@ -136,10 +137,10 @@ function GameManager() {
         mask: generalCollCategory
       },
       isStatic: true,
-    }
+    };
   }
 
-  this.resetPlayers = function() {
+  resetPlayers() {
     Matter.World.remove(world, player1Def.getPlayerBodiesList());
     Matter.World.remove(world, player1Atk.getPlayerBodiesList());
     Matter.World.remove(world, player2Def.getPlayerBodiesList());
@@ -156,7 +157,7 @@ function GameManager() {
     player2Def = new Player(this.player2DefOptions);
   }
 
-  this.resetBall = function() {
+  resetBall() {
     var randBallX;
     var randBallY;
     var randBallVelocityX;
@@ -167,12 +168,12 @@ function GameManager() {
     randBallY = random(((CANVAS_HEIGHT / 2) - 50), ((CANVAS_HEIGHT / 2) + 50));
     randBallVelocityX = 0;
     randBallVelocityY = 0;
-    randBallForceX = 0
+    randBallForceX = 0;
     randBallForceY = 0;
-    randBallPos = Matter.Vector.create(randBallX, randBallY);
-    randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
-    randBallForce = Matter.Vector.create(randBallForceX, randBallForceY);
-    
+    var randBallPos = Matter.Vector.create(randBallX, randBallY);
+    var randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
+    var randBallForce = Matter.Vector.create(randBallForceX, randBallForceY);
+
     // Set ball at random location in the middle + reset its velocity and acceleration
     Matter.Body.setPosition(ball.body, randBallPos);
     Matter.Body.setVelocity(ball.body, randBallVelocity);
