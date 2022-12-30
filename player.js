@@ -65,7 +65,7 @@ class Player {
       restitution: 0.1,
       angle: 0,
       density: 0.001,
-      slop: 0.1,
+      slop: 0.3,
       collisionFilter: {
         category: generalCollCategory,
         mask: generalCollCategory | groundCollCategory
@@ -77,7 +77,7 @@ class Player {
       restitution: 0.1,
       angle: 0,
       density: 0.00002,
-      slop: 0.1,
+      slop: 0.3,
       collisionFilter: {
         category: generalCollCategory,
         mask: generalCollCategory | groundCollCategory
@@ -89,7 +89,7 @@ class Player {
       restitution: 0.1,
       angle: 0,
       density: 0.001,
-      slop: 0.1,
+      slop: 0.3,
       collisionFilter: {
         category: generalCollCategory,
         mask: generalCollCategory | groundCollCategory
@@ -101,7 +101,7 @@ class Player {
       restitution: 0.1,
       angle: 0,
       density: 0.00005,
-      slop: 0.1,
+      slop: 0.3,
       collisionFilter: {
         category: generalCollCategory,
         mask: groundCollCategory
@@ -415,6 +415,15 @@ class Player {
     playerConstraintsList.push(this.cstrCounterweight);
     playerConstraintsList.push(this.cstrCounterweight2);
     return playerConstraintsList;
+  }
+
+  // Dimensions in pixels
+  setMainBodyDimensions(width, height) {
+    var scaleX = width / this.mainBodyW;
+    var scaleY = height / this.mainBodyH;
+    this.mainBodyW = width;
+    this.mainBodyH = height;
+    Body.scale(this.mainBody, scaleX, scaleY);
   }
 
   // Graphics function

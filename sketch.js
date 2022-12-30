@@ -110,18 +110,18 @@ function setup() {
 
   // Matter.js renderer creation - COMMENT FROM HERE...
   var render = Render.create({
-      element: document.body,
-      engine: engine,
-      options: {
-        width: CANVAS_WIDTH,
-        height: CANVAS_HEIGHT,
-        showAxes: true,
-        showConvexHulls: true,
-        showInternalEdges: true,
-        showVelocity: true,
-        showDebug: true,
-        showAngleIndicator: true
-      }
+    element: document.body,
+    engine: engine,
+    options: {
+      width: CANVAS_WIDTH,
+      height: CANVAS_HEIGHT,
+      showAxes: true,
+      showConvexHulls: true,
+      showInternalEdges: true,
+      showVelocity: true,
+      showDebug: true,
+      showAngleIndicator: true
+    }
   });
 
   Render.run(render);
@@ -161,53 +161,7 @@ function setup() {
 
 // p5.js animation loop
 function draw() {
-
-  // Drawing main menu
-  if (menu == MAIN_MENU) {
-    gameMenus.draw(menu);
-  }
-
-  // 1 PLAYER - LOCAL | CHOOSE SIDE
-  if (menu == P1_LOCAL_CHOOSE_SIDE_MENU) {
-    gameMenus.draw(menu);
-  }
-
-  // 2 PLAYERS - LOCAL
-  if (menu == P2_LOCAL_SELECTED) {
-    main();
-  }
-
-  // 2 PLAYERS - ONLINE
-  if (menu == P2_ONLINE_MENU) {
-    gameMenus.draw(menu);
-  }
-
-  // 1 PLAYER - LOCAL |LEFT
-  if (menu == P1_LOCAL_LEFT_SELECTED) {
-    main();
-  }
-
-  // 1 PLAYER - LOCAL | RIGHT
-  if (menu == P1_LOCAL_RIGHT_SELECTED) {
-    gameMenus.draw(menu);
-    main();
-  }
-
-  // 
-  if (menu == 6) {
-    gameMenus.draw(menu);
-  }
-
-  // 
-  if (menu == 7) {
-    gameMenus.draw(menu);
-  }
-
-  // EASTER EGG, SPECTATOR MODE BETWEEN TWO AIs
-  if (menu == 1000) {
-    main();
-  }
-  //console.log(ball.isOnGround(ground));
+  gameMenus.logic();
 }	
 
 // EVENT FUNCTIONS
