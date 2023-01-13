@@ -93,6 +93,8 @@ function preload() {
   spritePlayerMainBodies[2] = loadImage('assets/sprite_player_main_body2.png');
   spritePlayerMainBodies[3] = loadImage('assets/sprite_player_main_body3.png');
   spritePlayerMainBodies[4] = loadImage('assets/sprite_player_main_body4.png');
+  spritePlayerMainBodies[5] = loadImage('assets/sprite_player_main_body5.png');
+  spritePlayerMainBodies[6] = loadImage('assets/sprite_player_main_body6.png');
   spritePlayerLeg0 = loadImage('assets/sprite_player_leg0.png');
 }
 
