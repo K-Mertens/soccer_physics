@@ -23,9 +23,9 @@ class Player {
     this.legFixedBodyW = generalOptions.legFixedWidth;
     this.legFixedBodyH = generalOptions.legFixedHeight;
     //this.footBodyW = this.legBodyW;
-    this.footBodyW = 30;
-    this.footBodyH = 3; // TO BE TUNED
-    this.counterweightBodyW = this.legFixedBodyW + this.legBodyW + this.footBodyW;
+    this.footBodyW = 40;
+    this.footBodyH = 10; // TO BE TUNED
+    this.counterweightBodyW = this.legFixedBodyW + this.legBodyW;
     this.counterweightBodyH = 4;
     
     this.mainBody;
