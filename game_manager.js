@@ -19,7 +19,7 @@ class GameManager {
 
   init() {
     this.player1DefOptions = {
-      startPosX: CANVAS_WIDTH * 0.214,
+      startPosX: CANVAS_WIDTH /6 * 2,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -36,7 +36,7 @@ class GameManager {
     };
 
     this.player1AtkOptions = {
-      startPosX: CANVAS_WIDTH * 0.429,
+      startPosX: CANVAS_WIDTH /6 * 3,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -53,7 +53,7 @@ class GameManager {
     };
 
     this.player2DefOptions = {
-      startPosX: CANVAS_WIDTH * 0.768,
+      startPosX: CANVAS_WIDTH /6 * 4,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -70,7 +70,7 @@ class GameManager {
     };
 
     this.player2AtkOptions = {
-      startPosX: CANVAS_WIDTH * 0.571,
+      startPosX: CANVAS_WIDTH /6 * 5,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
