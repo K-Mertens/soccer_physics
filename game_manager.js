@@ -19,7 +19,7 @@ class GameManager {
 
   init() {
     this.player1DefOptions = {
-      startPosX: CANVAS_WIDTH /6 * 2,
+      startPosX: CANVAS_WIDTH / 6 * 1,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -36,7 +36,7 @@ class GameManager {
     };
 
     this.player1AtkOptions = {
-      startPosX: CANVAS_WIDTH /6 * 3,
+      startPosX: CANVAS_WIDTH / 6 * 2,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
