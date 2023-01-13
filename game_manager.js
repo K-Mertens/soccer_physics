@@ -170,7 +170,7 @@ class GameManager {
     randBallY = random(((CANVAS_HEIGHT / 2) - 50), ((CANVAS_HEIGHT / 2) + 50));
     randBallVelocityX = 0;
     randBallVelocityY = 0;
-    randBallForceX = random(-0.03,0.03);
+    randBallForceX = random(-0.003,0.003);
     randBallForceY = 0;
     var randBallPos = Matter.Vector.create(randBallX, randBallY);
     var randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
