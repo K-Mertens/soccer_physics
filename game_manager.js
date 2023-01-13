@@ -19,7 +19,7 @@ class GameManager {
 
   init() {
     this.player1DefOptions = {
-      startPosX: CANVAS_WIDTH * 0.214,
+      startPosX: CANVAS_WIDTH / 6 * 1,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -36,7 +36,7 @@ class GameManager {
     };
 
     this.player1AtkOptions = {
-      startPosX: CANVAS_WIDTH * 0.429,
+      startPosX: CANVAS_WIDTH / 6 * 2,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -53,7 +53,7 @@ class GameManager {
     };
 
     this.player2DefOptions = {
-      startPosX: CANVAS_WIDTH * 0.768,
+      startPosX: CANVAS_WIDTH /6 * 4,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -70,7 +70,7 @@ class GameManager {
     };
 
     this.player2AtkOptions = {
-      startPosX: CANVAS_WIDTH * 0.571,
+      startPosX: CANVAS_WIDTH /6 * 5,
       startPosY: CANVAS_HEIGHT * 5 / 7,
       mainWidth: CANVAS_WIDTH / 28,
       mainHeight: CANVAS_HEIGHT / 7.778,
@@ -91,7 +91,7 @@ class GameManager {
       startPosY: CANVAS_HEIGHT / 4,
       radius: 25,
       friction: 0.01,
-      restitution: 0.60,
+      restitution: 0.95,
       density: 0.00005,
       // Default is 0.05
       slop: 0.3,
@@ -164,11 +164,13 @@ class GameManager {
     var randBallVelocityY;
     var randBallForceX;
     var randBallForceY;
-    randBallX = random(((CANVAS_WIDTH / 2) - 100), ((CANVAS_WIDTH / 2) + 100));
+    // As I changed Players' start position according to "factor 6", I keep it here to make it centered with the same logic.
+	  // Ball appears randonmly between second half of 3/6 and first hald of 4/6 -> P1def 1/6, P1atk 2/6, P2atk 4/6, and P2def 5/6
+    randBallX = random((CANVAS_WIDTH / 6 * 2.5), (CANVAS_WIDTH / 6 * 3.5));
     randBallY = random(((CANVAS_HEIGHT / 2) - 50), ((CANVAS_HEIGHT / 2) + 50));
     randBallVelocityX = 0;
     randBallVelocityY = 0;
-    randBallForceX = 0;
+    randBallForceX = random(-0.002,0.002);
     randBallForceY = 0;
     var randBallPos = Matter.Vector.create(randBallX, randBallY);
     var randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
