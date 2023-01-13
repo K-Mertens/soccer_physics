@@ -164,11 +164,13 @@ class GameManager {
     var randBallVelocityY;
     var randBallForceX;
     var randBallForceY;
-    randBallX = random(((CANVAS_WIDTH / 2) - 100), ((CANVAS_WIDTH / 2) + 100));
+    // As I changed Players' start position according to "factor 6", I keep it here to make it centered with the same logic.
+	  // Ball appears randonmly between second half of 3/6 and first hald of 4/6 -> P1def 1/6, P1atk 2/6, P2atk 4/6, and P2def 5/6
+    randBallX = random((CANVAS_WIDTH / 6 * 2.5), (CANVAS_WIDTH / 6 * 3.5));
     randBallY = random(((CANVAS_HEIGHT / 2) - 50), ((CANVAS_HEIGHT / 2) + 50));
     randBallVelocityX = 0;
     randBallVelocityY = 0;
-    randBallForceX = 0;
+    randBallForceX = random(-0.03,0.03);
     randBallForceY = 0;
     var randBallPos = Matter.Vector.create(randBallX, randBallY);
     var randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
