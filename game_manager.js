@@ -91,7 +91,7 @@ class GameManager {
       startPosY: CANVAS_HEIGHT / 4,
       radius: 25,
       friction: 0.01,
-      restitution: 0.60,
+      restitution: 0.95,
       density: 0.00005,
       // Default is 0.05
       slop: 0.3,
