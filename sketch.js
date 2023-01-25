@@ -291,12 +291,12 @@ function keyReleased() {
 
 // TEST FUNCTION FOR LIFTING BALL WHEN IT IS ON THE GROUND
 function liftBall(player) {
-  /*if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
+  if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
     Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.005));
   }
   if (player.isOnGround && ball.isOnGround) {
     if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
       Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.007));
     }
-  }*/
+  }
 }
