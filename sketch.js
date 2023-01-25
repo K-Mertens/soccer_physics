@@ -19,9 +19,54 @@ var world;
 var ground;
 
 // CONSTANTS
-// Canvas dimensions
+
+// CANVAS //
+let ARR_CANVAS_W = [2560, 1920, 1600, 1366, 1280, 1024, 960, 854, 640, 426, 320, 256];
+let ARR_CANVAS_H = [1440, 1080, 900, 768, 720, 576, 540, 480, 360, 240, 180, 144];
 let CANVAS_WIDTH = 1280; // Default 1280
 let CANVAS_HEIGHT = 720; // Default 720
+
+// // Let's do some magic first (to keep beautiful 16:9 ratio)
+for(let i = 0; i < ARR_CANVAS_W.length; i++ ) {
+  // Setting canvas width to the size of the viewport minus the some wierd margins
+  // Setting canvas height to the height of the viewport minus the approximate size of a bookmark bar (not taken into account)
+  if (document.documentElement.clientWidth - 50 >= ARR_CANVAS_W[i] && document.documentElement.clientHeight - 100 >= ARR_CANVAS_H[i]) {
+      CANVAS_WIDTH = ARR_CANVAS_W[i];
+      CANVAS_HEIGHT = ARR_CANVAS_H[i];
+      console.log("Appropriate canvas size found: " + CANVAS_WIDTH + "*" + CANVAS_HEIGHT);
+      break;
+    }
+}
+
+// FOOTBALERS //
+let P_ALL_POS_Y = CANVAS_HEIGHT / 7 * 5;
+let P_ALL_MAIN_WIDTH = CANVAS_WIDTH / 28;
+let P_ALL_MAIN_HEIGHT = CANVAS_HEIGHT / 7.778;
+let P_ALL_LEG_WIDTH = CANVAS_WIDTH / 56;
+let P_ALL_LEG_HEIGHT = (CANVAS_HEIGHT / 7.778 * 2) / 3;
+let P_ALL_FOOT_WIDTH = P_ALL_LEG_WIDTH;
+let P_ALL_FOOT_HEIGHT = P_ALL_LEG_WIDTH / 3;
+let P_ALL_COUNTERWEIGHT_BODY_H = CANVAS_HEIGHT / 180;
+// -- Player1 def
+let P1D_POS_X = CANVAS_WIDTH / 6 * 1;
+// -- Player1 atk
+let P1A_POS_X = CANVAS_WIDTH / 6 * 2;
+// -- Player2 atk
+let P2A_POS_X = CANVAS_WIDTH / 6 * 4;
+// -- Player2 def
+let P2D_POS_X = CANVAS_WIDTH / 6 * 5;
+
+// GOALS //
+let GOAL_AREA_WIDTH = CANVAS_WIDTH / 9.333;
+let GOAL_AREA_HEIGHT = CANVAS_HEIGHT / 1.75;
+let GOAL_TOPBAR_POS_X = (CANVAS_WIDTH / 9.333) / 2;
+let GOAL_TOPBAR_POS_Y = CANVAS_HEIGHT - (CANVAS_HEIGHT / 1.75);
+let GOAL_TOPBAR_WIDTH = CANVAS_WIDTH / 9.333;
+let GOAL_TOPBAR_HEIGHT= CANVAS_HEIGHT / 72;
+let GOAL_BOTTOMBAR_POS_X = 0;
+let GOAL_BOTTOMBAR_POS_Y = (CANVAS_HEIGHT - ((CANVAS_HEIGHT / 1.75) / 2));
+let GOAL_BOTTOMBAR_WIDTH = CANVAS_WIDTH / 128;
+let GOAL_BOTTOMBAR_HEIGHT = CANVAS_HEIGHT / 1.75;
 
 // Menus states
 let MAIN_MENU = 0;
@@ -61,7 +106,7 @@ let elapsedTimeMin = 0;
 let tiltForceCoeff = 0.007;
 
 // Coefficient that is applied to the kickForce vector that is perpendicular to the movable leg of the players
-let kickForceCoeff = 0.0018;
+let kickForceCoeff = 0.0025;
 
 // Coefficient that is applied to the jumpForce vector
 let jumpForceCoeff = 0.55; // 0.5 works
@@ -246,12 +291,12 @@ function keyReleased() {
 
 // TEST FUNCTION FOR LIFTING BALL WHEN IT IS ON THE GROUND
 function liftBall(player) {
-  if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
+  /*if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
     Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.005));
   }
   if (player.isOnGround && ball.isOnGround) {
     if (Matter.SAT.collides(player.legBody, ball.body).collided || Matter.SAT.collides(player.footBody, ball.body).collided) {
       Body.applyForce(ball.body, ball.body.position, Matter.Vector.create(0,-0.007));
     }
-  }
+  }*/
 }

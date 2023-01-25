@@ -10,30 +10,41 @@ class Player {
   // TO DO : REFACTOR !!! AND ADD COMMENTS !!!
   // EXPLANATIONS OF THE PLAYER CLASS IS EXPLAINED AT THE BOTTOM OF THE CODE
   constructor(generalOptions) {
+    // Main body: set positions and size
     this.mainBodyX = generalOptions.startPosX;
-    this.mainBodyY = generalOptions.startPosY;
-    this.mainBodyW = generalOptions.mainWidth;
-    this.mainBodyH = generalOptions.mainHeight;
-    this.legBodyX = generalOptions.legX;
-    this.legBodyY = generalOptions.legY;
-    this.legBodyW = generalOptions.legWidth;
-    this.legBodyH = generalOptions.legHeight;
-    this.legFixedBodyX = generalOptions.legFixedX;
-    this.legFixedBodyY = generalOptions.legFixedY;
-    this.legFixedBodyW = generalOptions.legFixedWidth;
-    this.legFixedBodyH = generalOptions.legFixedHeight;
-    //this.footBodyW = this.legBodyW;
-    this.footBodyW = 40;
-    this.footBodyH = 10; // TO BE TUNED
+    this.mainBodyY = ("startPosY" in generalOptions) ? generalOptions.startPosY : P_ALL_POS_Y;
+    this.mainBodyW = ("mainWidth" in generalOptions) ? generalOptions.mainWidth : P_ALL_MAIN_WIDTH;
+    this.mainBodyH = ("mainHeight" in generalOptions) ? generalOptions.mainHeight : P_ALL_MAIN_HEIGHT;
+
+    // Moving leg: set positions and size
+    this.legBodyX = ("legX" in generalOptions) ? generalOptions.legX : 0;
+    this.legBodyY = ("legY" in generalOptions) ? generalOptions.legY : 0;
+    this.legBodyW = ("legWidth" in generalOptions) ? generalOptions.legWidth : P_ALL_LEG_WIDTH;
+    this.legBodyH = ("legHeight" in generalOptions) ? generalOptions.legHeight : P_ALL_LEG_HEIGHT;
+
+    // Fixed leg: set positions and size
+    this.legFixedBodyX = ("legFixedX" in generalOptions) ? generalOptions.legFixedX : 0;
+    this.legFixedBodyY = ("legFixedY" in generalOptions) ? generalOptions.legFixedY : 0;
+    this.legFixedBodyW = ("legFixedWidth" in generalOptions) ? generalOptions.legFixedWidth : P_ALL_LEG_WIDTH;
+    this.legFixedBodyH = ("legFixedHeight" in generalOptions) ? generalOptions.legFixedHeight : P_ALL_LEG_HEIGHT;
+
+    // Foot: set positions and size
+    this.footBodyW = ("footWidth" in generalOptions) ? generalOptions.footWidth : P_ALL_FOOT_WIDTH;
+    this.footBodyH = ("footHeight" in generalOptions) ? generalOptions.footHeight : P_ALL_FOOT_HEIGHT;
+
+    // Counterweight: set positions and size
     this.counterweightBodyW = this.legFixedBodyW + this.legBodyW;
-    this.counterweightBodyH = 4;
+    this.counterweightBodyH = P_ALL_COUNTERWEIGHT_BODY_H;
     
+    // Body pieces: preparing
+    this.bodyGroup;
     this.mainBody;
     this.legBody;
     this.legFixedBody;
     this.footBody;
     this.counterweightBody;
-  
+
+    // Constraints preparing
     this.cstr;
     this.cstrFixed;
     this.cstrFixed2;
@@ -43,8 +54,11 @@ class Player {
     this.cstrCounterweight;
     this.cstrCounterweight2;
   
-    this.isPlayer1 = generalOptions.isPlayer1;
-    this.playerBody = generalOptions.playerBody;
+    // Way to diff Player1 from Player2
+    this.isPlayer1 = ("isPlayer1" in generalOptions) ? generalOptions.isPlayer1 : false;
+
+    // Don't know yet
+    this.playerBody = ("playerBody" in generalOptions) ? generalOptions.playerBody : 0;
     this.absoluteAngle = 0;
     this.flipImageX = 0;
   
@@ -55,12 +69,16 @@ class Player {
       this.flipImageX = -1;
     }
   
+    // Creating the body group for later use
+    this.bodyGroup = Matter.Body.nextGroup(true);
+
     // BODY -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // BODIES CREATION - OPTIONS
     // IMPORTANT NOTE : I THINK THAT THE DENSITY OF THE MAIN BODY MUST BE EQUIVALENT TO THE ONE OF THE MOVABLE LEG (VERY LIGHT)
     // 99% OF THE MASS SHOULD BE CONCENTRATED IN THE FIXED LEG (AND ALSO MAYBE A FRACTION OF THIS PERCENTAGE INTO THE FOOT)
     // HOWEVER, IT SEEMS THAT KEEPING DEFAULT VALUES WORKS MUCH BETTER
     var main_options = {
+      group: this.bodyGroup,
       friction: 0.8,
       restitution: 0.1,
       angle: 0,
@@ -73,6 +91,7 @@ class Player {
     }
   
     var leg_options = {
+      group: this.bodyGroup,
       friction: 0.8,
       restitution: 0.1,
       angle: 0,
@@ -85,6 +104,7 @@ class Player {
     }
   
     var leg_fixed_options = {
+      group: this.bodyGroup,
       friction: 0.8,
       restitution: 0.1,
       angle: 0,
@@ -97,6 +117,7 @@ class Player {
     }
   
     var foot_options = {
+      group: this.bodyGroup,
       friction: 0.8,
       restitution: 0.1,
       angle: 0,
@@ -104,21 +125,22 @@ class Player {
       slop: 0.3,
       collisionFilter: {
         category: generalCollCategory,
-        mask: groundCollCategory
+        mask: generalCollCategory | groundCollCategory
       }
     }
   
     var counterweight_options = {
+      group: this.bodyGroup,
       friction: 0.99,
       restitution: 0.1,
       angle: 0,
-      density: 0.02,
+      density: 0.04,
       collisionFilter: {
         category: generalNoCollCategory,
         mask: generalCollCategory | groundCollCategory
       }
     }
-  
+
     // BODIES CREATION - MAIN BODY
     this.mainBody = Bodies.rectangle(this.mainBodyX, this.mainBodyY, this.mainBodyW, this.mainBodyH, main_options);
     World.add(world,this.mainBody);
@@ -292,7 +314,8 @@ class Player {
 
   // Jump function - OK
   jump() {
-    var jumpForceTest = Matter.Vector.create(this.mainBody.axes[0].x * -jumpForceCoeff, -this.mainBody.axes[0].y * jumpForceCoeff);
+    var coef = random(0.2, 1.1);
+    var jumpForceTest = Matter.Vector.create(this.mainBody.axes[0].x * -coef, -this.mainBody.axes[0].y * coef);
     Body.applyForce(this.mainBody, this.mainBody.position, jumpForceTest);
   }
 
