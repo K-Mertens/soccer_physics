@@ -34,7 +34,7 @@ class GameMenus {
     if (menu == P1_LOCAL_CHOOSE_SIDE_MENU) {
       image(background0, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       textAlign(CENTER, CENTER);
-      textSize(30);
+      textSize(CANVAS_HEIGHT/24);
       fill(255);
       text('Choose side', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 4));
       rectMode(CENTER);

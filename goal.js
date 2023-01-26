@@ -9,26 +9,29 @@
 class Goal {
   constructor(options) {
     // ATTRIBUTES
-    this.areaWidth = options.areaWidth; // This is the width of the goal (from the edge of canvas to the entrance of the goal)
-    this.areaHeight = options.areaHeight;
-    this.topBarX = options.topBarX;
-    this.topBarY = options.topBarY;
-    this.topBarW = options.topBarWidth;
-    this.topBarH = options.topBarHeight;
-    this.botBarX = options.bottomBarX;
-    this.botBarY = options.bottomBarY;
-    this.botBarW = options.bottomBarWidth;
-    this.botBarH = options.bottomBarHeight;
-    this.isGoal1 = options.isGoal1;
+    // This is the width of the goal (from the edge of canvas to the entrance of the goal)
+    this.areaWidth = ("areaWidth" in options) ? options.areaWidth : GOAL_AREA_WIDTH;
+    this.areaHeight = ("areaHeight" in options) ? options.areaHeight : GOAL_AREA_HEIGHT;
+    this.topBarX = ("topBarX" in options) ? options.topBarX : GOAL_TOPBAR_POS_X;
+    this.topBarY = ("topBarY" in options) ? options.topBarY : GOAL_TOPBAR_POS_Y;
+    this.topBarW = ("topBarWidth" in options) ? options.topBarWidth : GOAL_TOPBAR_WIDTH;
+    this.topBarH = ("topBarHeight" in options) ? options.topBarHeight : GOAL_TOPBAR_HEIGHT;
+    this.botBarX = ("bottomBarX" in options) ? options.bottomBarX : GOAL_BOTTOMBAR_POS_X;
+    this.botBarY = ("bottomBarY" in options) ? options.bottomBarY : GOAL_BOTTOMBAR_POS_Y;
+    this.botBarW = ("bottomBarWidth" in options) ? options.bottomBarWidth : GOAL_BOTTOMBAR_WIDTH;
+    this.botBarH = ("bottomBarHeight" in options) ? options.bottomBarHeight : GOAL_BOTTOMBAR_HEIGHT;
+    this.isGoal1 = ("isGoal1" in options) ? options.isGoal1 : false;
 
     // X-location of the bottom bar (depends if it is goal 1 or goal 2)
     if (this.isGoal1 == true) {
-      this.topBarX = (CANVAS_WIDTH / 9.333) / 2;
+      this.topBarX = this.topBarX;
       this.botBarX = 0;
+      options.angle = PI / 100;
     }
     else {
-      this.topBarX = CANVAS_WIDTH - ((CANVAS_WIDTH / 9.333) / 2);
+      this.topBarX = CANVAS_WIDTH - this.topBarX;
       this.botBarX = CANVAS_WIDTH;
+      options.angle = -PI / 100;
     }
 
     this.topBody = Bodies.rectangle(this.topBarX, this.topBarY, this.topBarW, this.topBarH, options);
@@ -36,14 +39,6 @@ class Goal {
 
     this.botBody = Bodies.rectangle(this.botBarX, this.botBarY, this.botBarW, this.botBarH, options);
     World.add(world, this.botBody);
-
-    // Slight tilt on top bar of goals
-    if (this.isGoal1 == true) {
-      Body.setAngle(this.topBody, PI / 100);
-    }
-    else {
-      Body.setAngle(this.topBody, -PI / 100);
-    }
   }
 
   // DRAWING FUNCTION

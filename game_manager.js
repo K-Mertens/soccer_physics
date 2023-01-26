@@ -19,77 +19,31 @@ class GameManager {
 
   init() {
     this.player1DefOptions = {
-      startPosX: CANVAS_WIDTH / 6 * 1,
-      startPosY: CANVAS_HEIGHT * 5 / 7,
-      mainWidth: CANVAS_WIDTH / 28,
-      mainHeight: CANVAS_HEIGHT / 7.778,
-      legX: 0,
-      legY: 0,
-      legWidth: CANVAS_WIDTH / 56,
-      legHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      legFixedX: 0,
-      legFixedY: 0,
-      legFixedWidth: CANVAS_WIDTH / 56,
-      legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
+      startPosX: P1D_POS_X,
       isPlayer1: true,
-      playerBody: Math.floor(Math.random() * 5),
+      playerBody: Math.floor(Math.random() * 7)
     };
 
     this.player1AtkOptions = {
-      startPosX: CANVAS_WIDTH / 6 * 2,
-      startPosY: CANVAS_HEIGHT * 5 / 7,
-      mainWidth: CANVAS_WIDTH / 28,
-      mainHeight: CANVAS_HEIGHT / 7.778,
-      legX: 0,
-      legY: 0,
-      legWidth: CANVAS_WIDTH / 56,
-      legHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      legFixedX: 0,
-      legFixedY: 0,
-      legFixedWidth: CANVAS_WIDTH / 56,
-      legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
+      startPosX: P1A_POS_X,
       isPlayer1: true,
-      playerBody: Math.floor(Math.random() * 5),
+      playerBody: Math.floor(Math.random() * 7)
     };
 
     this.player2DefOptions = {
-      startPosX: CANVAS_WIDTH /6 * 4,
-      startPosY: CANVAS_HEIGHT * 5 / 7,
-      mainWidth: CANVAS_WIDTH / 28,
-      mainHeight: CANVAS_HEIGHT / 7.778,
-      legX: 0,
-      legY: 0,
-      legWidth: CANVAS_WIDTH / 56,
-      legHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      legFixedX: 0,
-      legFixedY: 0,
-      legFixedWidth: CANVAS_WIDTH / 56,
-      legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      isPlayer1: false,
-      playerBody: Math.floor(Math.random() * 5),
+      startPosX: P2D_POS_X,
+      playerBody: Math.floor(Math.random() * 7)
     };
 
     this.player2AtkOptions = {
-      startPosX: CANVAS_WIDTH /6 * 5,
-      startPosY: CANVAS_HEIGHT * 5 / 7,
-      mainWidth: CANVAS_WIDTH / 28,
-      mainHeight: CANVAS_HEIGHT / 7.778,
-      legX: 0,
-      legY: 0,
-      legWidth: CANVAS_WIDTH / 56,
-      legHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      legFixedX: 0,
-      legFixedY: 0,
-      legFixedWidth: CANVAS_WIDTH / 56,
-      legFixedHeight: (CANVAS_HEIGHT / 7.778 * 2) / 3,
-      isPlayer1: false,
-      playerBody: Math.floor(Math.random() * 5),
+      startPosX: P2A_POS_X,
+      playerBody: Math.floor(Math.random() * 7)
     };
 
     this.ballOptions = {
       startPosX: CANVAS_WIDTH / 2,
       startPosY: CANVAS_HEIGHT / 4,
-      radius: 25,
+      radius: CANVAS_WIDTH / 51.2,
       friction: 0.01,
       restitution: 0.95,
       density: 0.00005,
@@ -102,16 +56,6 @@ class GameManager {
     };
 
     this.goal1Options = {
-      areaWidth: CANVAS_WIDTH / 9.333,
-      areaHeight: CANVAS_HEIGHT / 1.75,
-      topBarX: 0,
-      topBarY: CANVAS_HEIGHT - (CANVAS_HEIGHT / 1.75),
-      topBarWidth: CANVAS_WIDTH / 9.333,
-      topBarHeight: CANVAS_HEIGHT / 72,
-      bottomBarX: 0,
-      bottomBarY: (CANVAS_HEIGHT - ((CANVAS_HEIGHT / 1.75) / 2)),
-      bottomBarWidth: CANVAS_WIDTH / 128,
-      bottomBarHeight: CANVAS_HEIGHT / 1.75,
       isGoal1: true,
       collisionFilter: {
         category: generalCollCategory,
@@ -121,17 +65,6 @@ class GameManager {
     };
 
     this.goal2Options = {
-      areaWidth: CANVAS_WIDTH / 9.333,
-      areaHeight: CANVAS_HEIGHT / 1.75,
-      topBarX: 0,
-      topBarY: CANVAS_HEIGHT - (CANVAS_HEIGHT / 1.75),
-      topBarWidth: CANVAS_WIDTH / 9.333,
-      topBarHeight: CANVAS_HEIGHT / 72,
-      bottomBarX: 0,
-      bottomBarY: (CANVAS_HEIGHT - ((CANVAS_HEIGHT / 1.75) / 2)),
-      bottomBarWidth: CANVAS_WIDTH / 128,
-      bottomBarHeight: CANVAS_HEIGHT / 1.75,
-      isGoal1: false,
       collisionFilter: {
         category: generalCollCategory,
         mask: generalCollCategory
@@ -170,7 +103,7 @@ class GameManager {
     randBallY = random(((CANVAS_HEIGHT / 2) - 50), ((CANVAS_HEIGHT / 2) + 50));
     randBallVelocityX = 0;
     randBallVelocityY = 0;
-    randBallForceX = random(-0.002,0.002);
+    randBallForceX = random(-0.002, 0.002);
     randBallForceY = 0;
     var randBallPos = Matter.Vector.create(randBallX, randBallY);
     var randBallVelocity = Matter.Vector.create(randBallVelocityX, randBallVelocityY);
