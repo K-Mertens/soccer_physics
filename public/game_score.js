@@ -24,12 +24,12 @@ class GameScore {
         frameRate(20);
         this.score1 = this.score1 + 1;
         this.sloMo = true;
-        console.log('Entering slow mo')
+        //console.log('Entering slow mo')
       }
 
       // Putting this here is not the best solution since the text will disappear if the ball goes out the goal during SloMo
       push();
-      textSize(80);
+      textSize(CANVAS_HEIGHT/10);
       //rotateX((frameCount - this.previousFrameCount));
       //rotateZ((frameCount - this.previousFrameCount) * 0.85);
       text('GOAL', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
@@ -42,7 +42,7 @@ class GameScore {
       this.previousFrameCount = frameCount;
       frameRate(60);
       this.sloMo = false;
-      console.log('Slow mo reset');
+      //console.log('Slow mo reset');
     } 
 
     // Ball is out of right of canvas

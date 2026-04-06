@@ -26,7 +26,7 @@ class GameTimer {
   // DRAWING FUNCTION
   show() {
     push();
-    textSize(40);
+    textSize(CANVAS_HEIGHT/20);
     fill(255);
     stroke(0, 0, 0);
     text(nf(this.elapsedTimeMin, 2, 0) + ":" + nf(this.elapsedTimeSec, 2, 0), (CANVAS_WIDTH / 2), 30);

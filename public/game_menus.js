@@ -22,7 +22,7 @@ class GameMenus {
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2), menuButtonWidth, menuButtonHeight);
       fill(0, 100, 255);
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT * 3 / 4), menuButtonWidth, menuButtonHeight);
-      textSize(20);
+      textSize(CANVAS_HEIGHT/40);
       fill(255);
       textAlign(CENTER, CENTER);
       text('1 PLAYER - LOCAL', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 4));
@@ -42,7 +42,7 @@ class GameMenus {
       rect((CANVAS_WIDTH / 3), (CANVAS_HEIGHT / 2), menuButtonWidth, menuButtonHeight);
       fill(0, 100, 255);
       rect((CANVAS_WIDTH * 2 / 3), (CANVAS_HEIGHT / 2), menuButtonWidth, menuButtonHeight);
-      textSize(20);
+      textSize(CANVAS_HEIGHT/40);
       fill(255);
       text('LEFT', (CANVAS_WIDTH / 3), (CANVAS_HEIGHT / 2));
       text('RIGHT', (CANVAS_WIDTH * 2 / 3), (CANVAS_HEIGHT / 2));
@@ -52,7 +52,7 @@ class GameMenus {
       fill(170, 60, 0);
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT - menuButtonHeight), menuButtonWidth, menuButtonHeight);
       textAlign(CENTER, CENTER);
-      textSize(20);
+      textSize(CANVAS_HEIGHT/40);
       fill(255);
       text('BACK TO MAIN MENU', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT - menuButtonHeight));
       pop();
@@ -73,7 +73,7 @@ class GameMenus {
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2) - (menuButtonHeight / 2), menuButtonWidth, menuButtonHeight);
       fill(0, 100, 255);
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2) + (menuButtonHeight / 2), menuButtonWidth, menuButtonHeight);
-      textSize(20);
+      textSize(CANVAS_HEIGHT/40);
       fill(255);
       text('CREATE NEW GAME', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2) - (menuButtonHeight / 2));
       text('JOIN EXISTING GAME', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT / 2) + (menuButtonHeight / 2));
@@ -84,7 +84,7 @@ class GameMenus {
       fill(170, 60, 0);
       rect((CANVAS_WIDTH / 2), (CANVAS_HEIGHT - menuButtonHeight), menuButtonWidth, menuButtonHeight);
       textAlign(CENTER, CENTER);
-      textSize(20);
+      textSize(CANVAS_HEIGHT/40);
       fill(255);
       text('BACK TO MAIN MENU', (CANVAS_WIDTH / 2), (CANVAS_HEIGHT - menuButtonHeight));
       pop();

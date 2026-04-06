@@ -79,7 +79,7 @@ function main() {
   if (keyIsDown(65)) {
 	  if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
 		//player1Def.cstrLegs.stiffness = 0.00001;
-		player1Def.cstrLegs.stiffness = 0; 
+		player1Def.cstrLegs.stiffness = 0;
 		player1Def.kick(kickForceCoeff);
 	  }
   }
@@ -87,7 +87,7 @@ function main() {
   if (keyIsDown(68)) {
 	  if (menu == P1_LOCAL_LEFT_SELECTED || menu == P2_LOCAL_SELECTED) {
 		//player1Atk.cstrLegs.stiffness = 0.00001;
-		player1Atk.cstrLegs.stiffness = 0; 
+		player1Atk.cstrLegs.stiffness = 0;
 		player1Atk.kick(kickForceCoeff);
 	  }
   }

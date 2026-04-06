@@ -314,7 +314,8 @@ class Player {
 
   // Jump function - OK
   jump() {
-    var coef = random(0.2, 1.1);
+    //var coef = random(0.2, 1.1);
+    let coef = 0.5;
     var jumpForceTest = Matter.Vector.create(this.mainBody.axes[0].x * -coef, -this.mainBody.axes[0].y * coef);
     Body.applyForce(this.mainBody, this.mainBody.position, jumpForceTest);
   }
