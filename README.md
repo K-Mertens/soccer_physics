@@ -9,5 +9,4 @@ Libraries used :
 p5.js : https://p5js.org/  
 Matter.js : https://brm.io/matter-js/
 
-Play the game in 1P or 2P local on: https://speeced.github.io/soccer_physics
-Or the real one on: https://k-mertens.github.io/soccer_physics
+Play the game in 1P or 2P local on : https://soccer-physics.vercel.app/
